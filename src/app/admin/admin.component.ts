@@ -15,7 +15,11 @@ export class AdminComponent {
       Validators.minLength(3),
       Validators.maxLength(50),
     ]),
-    name: new FormControl(''),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(50),
+    ]),
     price: new FormControl(''),
     description: new FormControl(''),
     check: new FormControl(''),
