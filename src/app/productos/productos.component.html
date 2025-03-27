@@ -1,0 +1,11 @@
+
+<div>
+    @for(product of productService.getProducts(); track $index){
+        <p>{{product.reference}}</p>
+        <p>{{product.name}}</p>
+        <p>{{product.price}}</p>
+        <p>{{product.check}}</p>
+        <p>{{product.type}}</p>
+        <p>{{product.img}}</p>
+    }
+</div>

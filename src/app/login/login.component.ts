@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ProductsService } from '../services/products.service';
-import { Products } from '../interfaces/products';
 @Component({
   selector: 'app-admin',
   imports: [ReactiveFormsModule, JsonPipe],
@@ -40,16 +39,6 @@ export class AdminComponent {
     img: new FormControl(''),
   });
   handleSubmit(){
-    const producto:Products = {
-      reference:Number(this.productForm.controls.reference.value) || 0,
-      name:this.productForm.controls.name.value ||'',
-      price:Number(this.productForm.controls.price.value) || 0,
-      description:this.productForm.controls.description.value || '',
-      check:Boolean(this.productForm.controls.check.value) || false,
-      type:this.productForm.controls.type.value || '',
-      img:this.productForm.controls.img.value || '',
-    };
-    this.productService.setProducts(producto)
 
     console.log(this.productService.getProducts());
 }
