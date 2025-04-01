@@ -49,9 +49,7 @@ export class AdminComponent {
       type:this.productForm.controls.type.value || '',
       img:this.productForm.controls.img.value || '',
     };
-    this.productService.setProducts(producto)
-
-    console.log(this.productService.getProducts());
+    this.productService.createProduct(producto)
 }
 
 }

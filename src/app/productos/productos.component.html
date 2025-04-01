@@ -1,6 +1,6 @@
 
 <div>
-    @for(product of productService.getProducts(); track $index){
+    @for(product of productService.products(); track $index){
         <p>{{product.reference}}</p>
         <p>{{product.name}}</p>
         <p>{{product.price}}</p>

@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const mysql = require('mysql2');
 const bcrypt = require('bcrypt');
+const { log } = require('console');
 
 // Cargar variables de entorno
 dotenv.config();
@@ -31,14 +32,16 @@ app.use(cors());
 app.use(express.json());
 
 // Ruta para agregar un usuario
-app.post('/api/user', async (req, res) => {
+app.post('/api/register', async (req, res) => {
+    console.log("Solicitud POST recibida en /api/register");
     try {
         const { name, password, role } = req.body;
-
+        
         if (!name || !password || !role) {
+            console.log("Datos incompletos:", req.body);
             return res.status(400).json({ error: "El nombre, la contraseña y el rol son obligatorios" });
         }
-
+       
         // Hashear la contraseña antes de guardarla
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -62,9 +65,80 @@ app.post('/api/user', async (req, res) => {
     }
 });
 
+app.post('/api/login', async (req, res) => { 
+    console.log("Solicitud POST recibida en /api/login");
+
+    try {
+        const { name, password } = req.body;
+
+        console.log("Datos recibidos:", req.body);
+        if (!name || !password ) {
+            console.log("Datos incompletos:", req.body);
+            return res.status(400).json({ error: "El nombre, la contraseña y el password son obligatorios" });
+        }
+
+        const query = "Select * from  user where name = ?";
+
+        const user = await new Promise((resolve, reject) => {
+            db.query(query, [name], (err, result) => {
+                if (err) return reject(err);
+                resolve(result[0]); // Solo necesitamos un usuario
+            });
+        });
+        console.log(user);
+
+        if (!user) {
+            return res.status(401).json({ error: "Usuario o contraseña incorrectos" });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ error: "Usuario o contraseña incorrectos" });
+        }
+
+    
+        return res.status(200).json({ message: "Login exitoso", userName: user.name, role: user.role });
+        
+    } catch (error) {
+        console.error("Error en el servidor:", error);
+        return res.status(500).json({ error: "Error interno del servidor" });
+    }
+});
+
+app.post('/api/setProduct', async (req, res) => {
+    console.log("Solicitud POST recibida en /api/setProduct");
+    
+    try {
+        const { reference, name, price, description, check, type, img } = req.body;
+        console.log(reference, name, price, description, check, type, img)
+        // Validación de datos
+        if (!reference || !name || !price || !description || check === undefined || !type || !img) {
+            console.log("Datos incompletos:", req.body);
+            return res.status(400).json({ error: "Todos los campos son obligatorios" });
+        }
+
+        const query = "INSERT INTO product (reference, name, price, description, `check`, type, img) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        
+        const result = await new Promise((resolve, reject) => {
+            db.query(query, [reference, name, price, description, check, type, img], (err, result) => {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(result);
+            });
+        });
+
+        const insertId = result.insertId;
+        return res.status(201).json({ message: "Producto creado correctamente", productId: insertId });
+    } catch (error) {
+        console.error("Error en el servidor:", error);
+        return res.status(500).json({ error: "Error interno del servidor" });
+    }
+});
+
 // Ruta para obtener todos los usuarios
-app.get('/api/user', (req, res) => {
-    const query = "SELECT * FROM user";
+app.get('/api/getProduct', (req, res) => {
+    const query = "SELECT * FROM product";
     
     db.query(query, (err, results) => {
         if (err) {

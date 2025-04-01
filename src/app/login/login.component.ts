@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth/auth.service';
-import { User } from '../interfaces/user';
+import { UserLogin } from '../interfaces/user-login';
 @Component({
   selector: 'app-login',
   imports: [ReactiveFormsModule],
@@ -20,15 +20,14 @@ export class LoginComponent {
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(50),
-      ]),
+      ])
     });
     handleSubmit(){
-        const user:User = {
+        const user:UserLogin = {
           name:this.loginForm.controls.name.value ||'',
           password:this.loginForm.controls.password.value ||'',
         };
-        this.authService.setAuth(user)
-        console.log(this.authService.getAuth());
+        this.authService.postUser(user)
       }
 
 }

@@ -9,5 +9,9 @@ import { ProductsService } from '../services/products.service';
 })
 export class ProductosComponent {
   constructor(public productService:ProductsService){};
+
+  ngOnInit(): void {
+    this.productService.getProducts();
+  }
   
 }

@@ -21,11 +21,15 @@ export class RegisterComponent {
         Validators.minLength(3),
         Validators.maxLength(50),
       ]),
+      role: new FormControl('', [
+        Validators.required,
+      ]),
     });
     handleSubmit(){
         const user:User = {
           name:this.registerForm.controls.name.value ||'',
           password:this.registerForm.controls.password.value ||'',
+          role:this.registerForm.controls.role.value ||'',
         };
         this.authService.createUser(user)
         console.log(this.authService.getAuth());

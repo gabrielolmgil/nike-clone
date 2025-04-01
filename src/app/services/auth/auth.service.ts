@@ -1,15 +1,18 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http'; // Importar HttpClient
 import { User } from '../../interfaces/user';
-import { Observable } from 'rxjs';
+import { UserLogin } from '../../interfaces/user-login';
+import { Router } from '@angular/router';
+import { LoginResponse } from '../../interfaces/login-response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
+  apiUrl = 'http://localhost:3000'; // URL de la API
   datosUser = signal<User[]>([]);
 
   getAuth(): User[] {
@@ -20,18 +23,28 @@ export class AuthService {
     this.datosUser.set([...this.datosUser(), user]);
   }
 
-  // Método para actualizar un usuario
-  updateUser(id: number, user: User): Observable<User> {
-    const url = `http://localhost:3000/api/user/${id}`; 
-    return this.http.put<User>(url, user); 
+  createUser(user: User): void {
+    this.http.post(`${this.apiUrl}/api/register`, { name: user.name, password: user.password, role: user.role }).subscribe({
+      next: (response) => {
+      },
+      error: (err) => {
+      }
+    });
   }
-
-  getUserById(id: number): Observable<User> {
-    const url = `http://localhost:3000/api/user/${id}`;
-    return this.http.get<User>(url);
-  }
-  createUser(user: User): Observable<User> {
-    const url = `http://localhost:3000/api/user`; // URL de la API
-    return this.http.post<User>(url, user); // Realiza la solicitud POST para crear un nuevo usuario
-  }
+  postUser(user: UserLogin): void {
+    console.log(user);
+    this.http.post<LoginResponse>(`${this.apiUrl}/api/login`, { name: user.name, password: user.password }).subscribe({
+      next: (response) => {
+        console.log(response.role);
+        if(response.role == 'Admin'){
+          this.router.navigate(['/admin']); 
+        }else if (response.role == 'Guest'){
+          this.router.navigate(['/']);
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+}
 }
