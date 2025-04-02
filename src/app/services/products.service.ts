@@ -41,4 +41,14 @@ export class ProductsService {
           }
         });
   }
+  deleteProduct(id: number): void {
+    this.http.delete(`${this.apiUrl}/api/product/${id}`).subscribe({
+        next: (response) => {
+            console.log('Producto eliminado correctamente', response);
+        },
+        error: (err) => {
+            console.error('Error al eliminar el producto', err);
+        }
+    });
+}
 }

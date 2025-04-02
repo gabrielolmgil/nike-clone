@@ -183,6 +183,23 @@ app.delete('/api/user/:id', (req, res) => {
     });
 });
 
+// Ruta para eliminar un producto por ID
+app.delete('/api/product/:id', (req, res) => {
+    const { id } = req.params;
+    const query = "DELETE FROM product WHERE id = ?";
+    
+    db.query(query, [id], (err, results) => {
+        if (err) {
+            console.error("Error al eliminar el producto:", err);
+            return res.status(500).json({ error: "Error al eliminar el producto" });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ error: "Producto no encontrado" });
+        }
+        return res.status(200).json({ message: "Producto eliminado correctamente" });
+    });
+});
+
 // Ruta de prueba
 app.get('/api/mensaje', (req, res) => {
     return res.json({ mensaje: '¡Hola desde la API en JavaScript!' });
