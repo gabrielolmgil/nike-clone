@@ -184,11 +184,11 @@ app.delete('/api/user/:id', (req, res) => {
 });
 
 // Ruta para eliminar un producto por ID
-app.delete('/api/product/:id', (req, res) => {
-    const { id } = req.params;
-    const query = "DELETE FROM product WHERE id = ?";
+app.delete('/api/product/:reference', (req, res) => {
+    const { reference } = req.params;
+    const query = "DELETE FROM product WHERE reference = ?";
     
-    db.query(query, [id], (err, results) => {
+    db.query(query, [reference], (err, results) => {
         if (err) {
             console.error("Error al eliminar el producto:", err);
             return res.status(500).json({ error: "Error al eliminar el producto" });

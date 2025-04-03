@@ -1,15 +1,14 @@
 
-<div class="flex p-10">
+<div class=" p-10 grid grid-cols-2 gap-4 ">
     @for(product of productService.products(); track $index){
-    <div class="border border-gray-300 rounded-md p-10 mx-10">
+    <div class="border border-gray-300  rounded-md p-10 mx-10">
         <p class="text-2xl">{{product.reference}}</p>
         <p class="text-2xl">{{product.name}}</p>
         <p class="text-2xl">{{product.price}}€</p>
         <p>{{product.check}}</p>
         <p>{{product.type}}</p>
         <p>{{product.img}}</p>
-        <img src={{product.img}}>
-        <button class="bg-black text-white hover:bg-white border border-black hover:text-black  py-3 px-6 rounded-full font-bold text-lg hover:bg-gray-900 cursor-pointer transition duration-300 mt-6">Eliminar</button>        
+        <button (click)="deleteProduct(product.reference)" class="bg-black text-white hover:bg-white border border-black hover:text-black  py-3 px-6 rounded-full font-bold text-lg cursor-pointer transition duration-300 mt-6">Eliminar</button>        
     </div>
     }
 </div>

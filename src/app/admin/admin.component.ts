@@ -15,7 +15,6 @@ export class AdminComponent {
   productForm = new FormGroup({
     reference: new FormControl('', [
       Validators.required,
-      Validators.minLength(3),
       Validators.maxLength(50),
     ]),
     name: new FormControl('', [
@@ -37,7 +36,9 @@ export class AdminComponent {
     type: new FormControl('',[
       Validators.required,
     ]),
-    img: new FormControl(''),
+    img: new FormControl('',[
+      Validators.required,
+    ]),
   });
   handleSubmit(){
     const producto:Products = {

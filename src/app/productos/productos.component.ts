@@ -13,5 +13,9 @@ export class ProductosComponent {
   ngOnInit(): void {
     this.productService.getProducts();
   }
-  
+  deleteProduct(reference: number): void {
+    this.productService.deleteProduct(reference);
+    this.productService.getProducts();
+  }
+
 }
