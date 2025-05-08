@@ -5,7 +5,6 @@ import { ProductsService } from '../services/products.service';
   selector: 'app-productos',
   imports: [],
   templateUrl: './productos.component.html',
-  styleUrl: './productos.component.css'
 })
 export class ProductosComponent {
   constructor(public productService:ProductsService){};

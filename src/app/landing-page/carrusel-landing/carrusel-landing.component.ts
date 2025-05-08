@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-carrusel-landing',
   imports: [],
   templateUrl: './carrusel-landing.component.html',
-  styleUrl: './carrusel-landing.component.css'
 })
 export class CarruselLandingComponent {
 

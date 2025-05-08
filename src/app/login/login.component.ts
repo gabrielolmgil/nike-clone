@@ -6,7 +6,6 @@ import { UserLogin } from '../interfaces/user-login';
   selector: 'app-login',
   imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
 })
 export class LoginComponent {
   constructor(private authService:AuthService){}

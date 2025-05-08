@@ -5,7 +5,6 @@ import { RouterOutlet, RouterLink } from '@angular/router';
   selector: 'app-header',
   imports: [RouterOutlet, RouterLink ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
 })
 export class HeaderComponent {
 

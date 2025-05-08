@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-inicio-landing',
   imports: [],
   templateUrl: './inicio-landing.component.html',
-  styleUrl: './inicio-landing.component.css'
 })
 export class InicioLandingComponent {
 

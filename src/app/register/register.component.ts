@@ -6,7 +6,6 @@ import { User } from '../interfaces/user';
   selector: 'app-register',
   imports: [ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
 })
 export class RegisterComponent {
   constructor(private authService:AuthService){}

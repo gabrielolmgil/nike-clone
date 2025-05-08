@@ -7,7 +7,6 @@ import { FooterLandingComponent } from './footer-landing/footer-landing.componen
   selector: 'app-landing-page',
   imports: [InicioLandingComponent, CarruselLandingComponent, FooterLandingComponent],
   templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.css'
 })
 export class LandingPageComponent {
 
