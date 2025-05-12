@@ -17,7 +17,7 @@ describe('FooterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('El componente FooterComponent se crea crrectamente', () => {
     expect(component).toBeTruthy();
   });
 });

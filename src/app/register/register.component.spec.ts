@@ -11,7 +11,7 @@ describe('RegisterComponent', () => {
     }).compileComponents();
   });
 
-  it('should create', () => {
+  it('RegisterComponent se crea correctamente', () => {
     const fixture = TestBed.createComponent(RegisterComponent);
     const component = fixture.componentInstance;
     expect(component).toBeTruthy();

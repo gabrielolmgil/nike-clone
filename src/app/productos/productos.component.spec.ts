@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { ProductsService } from '../services/products.service';  
 import { HttpClientTestingModule } from '@angular/common/http/testing';  
 
-describe('ProductsService', () => {
+describe('ProductsComponent', () => {
   let service: ProductsService;
 
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('ProductsService', () => {
     service = TestBed.inject(ProductsService); 
   });
 
-  it('should be created', () => {
+  it('Component ProductsComponent se crea correctamente', () => {
     expect(service).toBeTruthy();  
   });
 });

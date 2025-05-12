@@ -17,7 +17,7 @@ describe('LandingPageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('El componente LandingPage se ha creado correctamente', () => {
     expect(component).toBeTruthy();
   });
 });

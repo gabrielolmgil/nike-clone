@@ -29,11 +29,11 @@ describe('ProductsService', () => {
     httpMock.verify();
   });
 
-  it('should be created', () => {
+  it('ProductsService se ha creado correctamente', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should send POST request to create product and navigate', () => {
+  it('Post de prducto funciona y lo recive', () => {
     const mockProduct: Products = {
       reference: 123,
       name: 'Test Product',

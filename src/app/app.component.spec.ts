@@ -37,7 +37,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create the app', () => {
+  it('AppComponent se crea correctamente', () => {
     expect(component).toBeTruthy();
   });
 });

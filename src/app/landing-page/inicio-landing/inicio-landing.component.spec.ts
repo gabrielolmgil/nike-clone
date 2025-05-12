@@ -17,7 +17,7 @@ describe('InicioLandingComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('InicioLandingComponent se crea correctamente', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -17,7 +17,7 @@ describe('FooterLandingComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('FooterLandig se crea correctamente', () => {
     expect(component).toBeTruthy();
   });
 });

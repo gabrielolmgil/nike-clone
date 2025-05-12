@@ -17,7 +17,7 @@ describe('CarruselLandingComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('CarruselLandingComponent se crea correctamente', () => {
     expect(component).toBeTruthy();
   });
 });
